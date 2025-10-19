@@ -1,3 +1,5 @@
+guardar en st.session_state las flashcards? para que no carguen cada vez?
+
 make the number of columns variable (manage view). add filtering, differentiate due cards from the rest. 
 modify last card in add view.
 modify cards in manage view.

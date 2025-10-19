@@ -1,4 +1,4 @@
-from modules.utils import st, askGemini, fm, initialize_session_state, refresh
+from modules.utils import *
 
 
 initialize_session_state()
@@ -21,5 +21,15 @@ with st.form("new_card_form_manage", clear_on_submit=True):
 st.write("")
 
 with st.container(border=True):
-    st.write(st.session_state.flashcards[-1]["card"]["back"])
+    
+    col_text, col_speak = st.columns([1, 0.1])
+    with col_text:
+        st.write(st.session_state.flashcards[-1]["card"]["back"])
+    with col_speak:
+        st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=st.session_state.flashcards[-1]["card"]["front"]))
     st.caption("Last card")
+
+
+audio_placeholder = st.empty()
+speak(audio_placeholder, st.session_state.tts)
+

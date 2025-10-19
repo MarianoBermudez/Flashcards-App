@@ -29,7 +29,7 @@ else:
         with st.container(border=True):
             col_text, col_speak = st.columns([1, 0.1])
             with col_text:
-                st.subheader(f"{current_card_data['front']}")
+                st.write(f"#### {current_card_data['front']}")
             with col_speak:
                 st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=current_card_data['front']))
         

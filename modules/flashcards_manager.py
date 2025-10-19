@@ -81,6 +81,36 @@ class FlashcardsManager:
         self.save_cards()
         return new_card
 
+    def update_card(self, index: int, new_front: str = None, new_back: str = None) -> bool:
+        """
+        Updates the front and/or back text of a specific flashcard by its index.
+        Only updates the fields that are not None.
+        """
+        if not (0 <= index < len(self.cards)):
+            print(f"Error: Card index {index} out of bounds.")
+            return False
+
+        card_changed = False
+        card = self.cards[index]
+
+        # Update front if a new value is provided and it's different
+        if new_front is not None and card.front != new_front:
+            card.front = new_front
+            card_changed = True
+
+        # Update back if a new value is provided and it's different
+        if new_back is not None and card.back != new_back:
+            card.back = new_back
+            card_changed = True
+
+        # Only save if there was an actual change
+        if card_changed:
+            self.save_cards()
+            print(f"Card {index} updated.")
+            return True
+        
+        return False # No changes were made
+    
     def review_card(self, card_index: int, grade: int):
         """
         Applies the SM-2 algorithm to a card by its index in the main list.
@@ -146,6 +176,10 @@ def load_all_cards() -> List[Dict[str, Any]]:
 def add_new_card(front: str, back: str):
     """Wrapper to add a card to the manager."""
     manager.add_card(front, back)
+
+def update_card_by_index(index: int, new_front: str = None, new_back: str = None) -> bool:
+    """Wrapper to update a card's text in the manager."""
+    return manager.update_card(index, new_front, new_back)
 
 def delete_card_by_index(index: int):
     """Deletes a card from the manager's list by its index."""
