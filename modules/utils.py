@@ -18,12 +18,10 @@ def initialize_session_state():
 def refresh():
     st.session_state.flashcards = fm.load_all_cards()
     st.session_state.due_cards = fm.get_due_cards()
-    st.session_state.current_index = 0
 
 def delete_flashcard_action(original_index):
     fm.delete_card_by_index(original_index)
     st.session_state.show_answer = False
-    st.session_state.current_index = 0
     refresh()
 
 def update_review_status_action(original_index, grade_string):
@@ -31,7 +29,7 @@ def update_review_status_action(original_index, grade_string):
     st.session_state.show_answer = False
     st.session_state.current_index += 1
 
-
+@st.fragment()
 def speak(placeholder, text_to_speak):
     """Generates audio from text and plays it automatically in a placeholder."""
     if text_to_speak:

@@ -3,7 +3,6 @@ from modules.utils import *
 
 
 initialize_session_state()
-refresh()
 
 
 st.set_page_config(page_title="Review Flashcards", layout="centered", page_icon="✨")
@@ -27,11 +26,11 @@ else:
 
     if not st.session_state.show_answer:
         with st.container(border=True):
-            col_text, col_speak = st.columns([1, 0.1])
+            col_text, col_speak = st.columns([1.4, 0.1])
             with col_text:
                 st.write(f"#### {current_card_data['front']}")
             with col_speak:
-                st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=current_card_data['front']))
+                st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=current_card_data['front']), type="tertiary")
         
         st.button(
             "Reveal Answer", 
@@ -42,11 +41,11 @@ else:
 
     else:
         with st.container(border=True):
-            col_text_back, col_speak_back = st.columns([1, 0.1])
+            col_text_back, col_speak_back = st.columns([1.4, 0.1])
             with col_text_back:
                 st.markdown(current_card_data['back'])
             with col_speak_back:
-                st.button("🔊", key="speak_back", on_click=lambda: st.session_state.update(tts=current_card_data['front']))
+                st.button("🔊", key="speak_back", on_click=lambda: st.session_state.update(tts=current_card_data['front']), type="tertiary")
 
             st.caption(f"{current_index + 1} / {num_cards}")
 

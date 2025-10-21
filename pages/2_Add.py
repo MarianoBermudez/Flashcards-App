@@ -24,7 +24,7 @@ with st.container(border=True):
     
     col_text, col_speak = st.columns([1, 0.1])
     with col_text:
-        st.write(st.session_state.flashcards[-1]["card"]["back"])
+        st.markdown(st.session_state.flashcards[-1]["card"]["back"])
     with col_speak:
         st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=st.session_state.flashcards[-1]["card"]["front"]))
     st.caption("Last card")
