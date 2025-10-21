@@ -20,9 +20,8 @@ elif current_index >= num_cards:
     st.success("🎉 You've reviewed all available cards for now! Come back later.")
 
 else:
-    current_wrapper = due_cards[current_index]
-    current_card_data = current_wrapper['card']
-    original_index = current_wrapper['original_index']
+    current_card_data = due_cards[current_index]['card']
+    card_index = due_cards[current_index]['card_index']
 
     if not st.session_state.show_answer:
         with st.container(border=True):
@@ -52,16 +51,16 @@ else:
         col0, col1, col2, col3 = st.columns(4)
 
         col0.button("Again", key="again_btn", type="secondary", use_container_width=True,
-            on_click=update_review_status_action, args=(original_index, "Again",))
+            on_click=update_review_status_action, args=(card_index, "Again",))
             
         col1.button("Hard", key="hard_btn", type="secondary", use_container_width=True,
-            on_click=update_review_status_action, args=(original_index, "Hard",))
+            on_click=update_review_status_action, args=(card_index, "Hard",))
             
         col2.button("Good", key="good_btn", type="secondary", use_container_width=True,
-            on_click=update_review_status_action, args=(original_index, "Good",))
+            on_click=update_review_status_action, args=(card_index, "Good",))
 
         col3.button("Easy", key="easy_btn", type="secondary", use_container_width=True,
-            on_click=update_review_status_action, args=(original_index, "Easy",))
+            on_click=update_review_status_action, args=(card_index, "Easy",))
 
 
 audio_placeholder = st.empty()

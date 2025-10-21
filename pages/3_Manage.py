@@ -21,14 +21,14 @@ else:
 
     for item in cards:
         card = item['card']
-        original_index = item['original_index']
+        card_index = item['card_index']
         
         with cols[col_index]:
             
-            if st.session_state.card_to_edit == original_index:
+            if st.session_state.card_to_edit == card_index:
                 
-                with st.expander(f"#### Editing Card {original_index + 1}...", expanded=True):
-                    with st.form(key=f"edit_form_{original_index}"):
+                with st.expander(f"#### Editing Card {card_index + 1}...", expanded=True):
+                    with st.form(key=f"edit_form_{card_index}"):
                         st.caption("Modify the fields and save.")
                         new_front = st.text_input("Front", value=card['front'])
                         new_back = st.text_area("Back", value=card['back'], height=600)
@@ -37,7 +37,7 @@ else:
                         
                         with col_save:
                             if st.form_submit_button("Save", type="primary"):
-                                fm.update_card_by_index(original_index, new_front, new_back)
+                                fm.update_card_by_index(card_index, new_front, new_back)
                                 st.session_state.card_to_edit = None
                                 st.rerun() 
                         
@@ -47,7 +47,7 @@ else:
                                 st.rerun() 
 
             else:
-                with st.expander(f"#### Card {original_index + 1}: {card['front']}"):
+                with st.expander(f"#### Card {card_index + 1}: {card['front']}"):
                     st.markdown(f"**Answer:**\n> {card['back']}")
                     
                     review_date_dt = datetime.fromisoformat(card['next_review_date'])
@@ -63,16 +63,16 @@ else:
                     with col_edit:
                         st.button(
                             "✏️", 
-                            key=f"edit_btn_{original_index}",
-                            on_click=lambda idx=original_index: st.session_state.update(card_to_edit=idx)
+                            key=f"edit_btn_{card_index}",
+                            on_click=lambda idx=card_index: st.session_state.update(card_to_edit=idx)
                         )
 
                     with col_delete:
                         st.button(
                             "❌", 
-                            key=f"delete_btn_{original_index}", 
+                            key=f"delete_btn_{card_index}", 
                             on_click=delete_flashcard_action, 
-                            args=(original_index,), 
+                            args=(card_index,), 
                             type="secondary"
                         )
 

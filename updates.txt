@@ -1,11 +1,14 @@
-guardar en st.session_state las flashcards? para que no carguen cada vez?
-
-make the number of columns variable (manage view). add filtering, differentiate due cards from the rest. 
+improve requirements file
+add filtering, differentiate due cards from the rest. 
 modify last card in add view.
-modify cards in manage view.
 show time for each button in review view
 deploy.  test in mobile
 make it available for different users with different cards (and api keys). how to manage concurrency?
 make a visualization? metrics? streak? animation? ballons
 allow the user to change the prompt context
-delete card pop up with checkbox to disable
+delete card confirmation pop up with checkbox to disable
+
+
+
+Problematic:
+make the number of columns variable (manage view). 

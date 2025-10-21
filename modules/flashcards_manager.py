@@ -170,7 +170,7 @@ manager = FlashcardsManager()
 def load_all_cards() -> List[Dict[str, Any]]:
     """Loads all cards (as dictionaries) from the manager for display."""
     # We include the original index for easy mapping back in review/delete actions
-    return [{'card': card.to_dict(), 'original_index': i} 
+    return [{'card': card.to_dict(), 'card_index': i} 
             for i, card in enumerate(manager.cards)]
 
 def add_new_card(front: str, back: str):
@@ -201,13 +201,13 @@ def get_due_cards() -> List[Dict[str, Any]]:
             if due_date <= now:
                 due_cards_with_index.append({
                     'card': card.to_dict(),
-                    'original_index': i
+                    'card_index': i
                 })
         except ValueError:
             # Card has a malformed date, treat as due immediately
             due_cards_with_index.append({
                 'card': card.to_dict(),
-                'original_index': i
+                'card_index': i
             })
 
     # Sort by due date (oldest first)
@@ -215,7 +215,7 @@ def get_due_cards() -> List[Dict[str, Any]]:
     
     return due_cards_with_index
 
-def update_review_status(original_index: int, grade_string: str) -> int:
+def update_review_status(card_index: int, grade_string: str) -> int:
     """
     Maps string grade to integer grade (0-3) and calls the manager's review logic.
     """
@@ -233,4 +233,4 @@ def update_review_status(original_index: int, grade_string: str) -> int:
         return 0
     
     # Call the manager's core review logic
-    return manager.review_card(original_index, grade)
+    return manager.review_card(card_index, grade)
