@@ -14,11 +14,12 @@ num_cards = len(due_cards)
 current_index = st.session_state.current_index
 
 if not due_cards:
-    st.info("The deck is empty or no cards are due for review!")
+    st.info("The deck is empty or no cards are due for review.")
 
 elif current_index >= num_cards:
-    st.success("🎉 You've reviewed all available cards for now! Come back later.")
-
+    st.success("🎉 You've reviewed all available cards for now!")
+    st.balloons()
+    
 else:
     current_card_data = due_cards[current_index]['card']
     card_index = due_cards[current_index]['card_index']

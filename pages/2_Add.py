@@ -13,8 +13,9 @@ with st.form("new_card_form_manage", clear_on_submit=True):
     
     if submitted and word:
         context = "You are a USA native english professor. Give me the back of a simple flashcard (use simple markdown). The first line of your response must be the word/expression (use '####'), then give the meaning/s of the following word/expression and a few diffrent examples The word/expression is: "
-        fm.add_new_card(word, askGemini(word, context))
-        refresh()
+        response = askGemini(word, context)
+        fm.add_new_card(word, response)
+        st.session_state.last_card = response
     elif submitted:
         st.error("Please write a word or expression")
 
@@ -24,7 +25,7 @@ with st.container(border=True):
     
     col_text, col_speak = st.columns([1, 0.1])
     with col_text:
-        st.markdown(st.session_state.flashcards[-1]["card"]["back"])
+        st.markdown(st.session_state.last_card)
     with col_speak:
         st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=st.session_state.flashcards[-1]["card"]["front"]))
     st.caption("Last card")

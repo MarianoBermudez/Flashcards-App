@@ -1,14 +1,28 @@
-improve requirements file
-add filtering, differentiate due cards from the rest. 
-modify last card in add view.
-show time for each button in review view
-deploy.  test in mobile
-make it available for different users with different cards (and api keys). how to manage concurrency?
+use fragments to improve perfomance
+is there a way to avoid reloading the cards on manage view?
+create an .exe file?
+
+add delete card confirmation pop up with checkbox to disable
+check how are streamlit projects made (code/project structure/ ).
+look for streamlit best practices
+
+
 make a visualization? metrics? streak? animation? ballons
+add filtering, sorting by date. 
+
+check for repeted cards?
+
+
+
+deploy.  test in mobile (change to sql db?)
+requirements file
+readme file
+license?
+
+Extra:
+make it available for different users with different cards (and api keys). how to manage concurrency?
 allow the user to change the prompt context
-delete card confirmation pop up with checkbox to disable
-
-
+change to db?
 
 Problematic:
 make the number of columns variable (manage view). 

@@ -13,16 +13,13 @@ def initialize_session_state():
         st.session_state.current_index = 0
         st.session_state.show_answer = False
         st.session_state.view_mode = 'review'
+        st.session_state.last_card = st.session_state.flashcards[-1]["card"]["back"]
+        st.session_state.card_to_edit = None
         st.session_state.tts = ""
-        
-def refresh():
-    st.session_state.flashcards = fm.load_all_cards()
-    st.session_state.due_cards = fm.get_due_cards()
 
 def delete_flashcard_action(original_index):
     fm.delete_card_by_index(original_index)
     st.session_state.show_answer = False
-    refresh()
 
 def update_review_status_action(original_index, grade_string):
     fm.update_review_status(original_index, grade_string)

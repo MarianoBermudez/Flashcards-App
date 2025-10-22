@@ -2,11 +2,8 @@ from modules.utils import *
 from datetime import datetime
 
 initialize_session_state()
+st.session_state.flashcards = fm.load_all_cards()
 
-if 'card_to_edit' not in st.session_state:
-    st.session_state.card_to_edit = None
-
-refresh() 
 
 st.set_page_config(page_title="Manage Flashcards", layout="centered", page_icon="📚")
 st.title("📚 Manage Flashcards")
@@ -72,8 +69,7 @@ else:
                             "❌", 
                             key=f"delete_btn_{card_index}", 
                             on_click=delete_flashcard_action, 
-                            args=(card_index,), 
-                            type="secondary"
+                            args=(card_index,)
                         )
 
         col_index = (col_index + 1) % 2
