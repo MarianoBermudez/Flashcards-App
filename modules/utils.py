@@ -27,6 +27,14 @@ def update_review_status_action(original_index, grade_string):
     st.session_state.show_answer = False
     st.session_state.current_index += 1
 
+@st.fragment()
+def speaker(word):
+    st.button("🔊", key="speaker", on_click=lambda: st.session_state.update(tts=word), type="tertiary")
+    with st.container(border=0,height=1):
+        audio_placeholder = st.empty()
+    speak(audio_placeholder, st.session_state.tts)
+    st.session_state.tts = ""
+    
 def speak(placeholder, text_to_speak):
     """Generates audio from text and plays it automatically in a placeholder."""
     if text_to_speak:
@@ -39,11 +47,11 @@ def speak(placeholder, text_to_speak):
             audio_base64 = base64.b64encode(audio_bytes.read()).decode('utf-8')
             key = random.random()
             audio_html = f"""
-                <audio autoplay style="display:none;" id="audio-{key}">
+                <audio autoplay style="display:none;" id="audio-{key}" onended="this.remove()">
                   <source src="data:audio/mp3;base64,{audio_base64}" type="audio/mp3">
                 </audio>
             """
             placeholder.markdown(audio_html, unsafe_allow_html=True)
+            print("speaking")
         except Exception as e:
             st.error(f"Sorry, an error occurred during TTS: {e}")
-        st.session_state.tts = ""

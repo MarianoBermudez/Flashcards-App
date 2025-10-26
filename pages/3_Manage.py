@@ -4,8 +4,7 @@ from datetime import datetime
 initialize_session_state()
 st.session_state.flashcards = fm.load_all_cards()
 
-
-st.set_page_config(page_title="Manage Flashcards", layout="centered", page_icon="📚")
+st.set_page_config(page_title="Manage ", layout="centered", page_icon="📚")
 st.title("📚 Manage Flashcards")
 st.write("")
 

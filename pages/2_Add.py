@@ -3,17 +3,7 @@ from modules.utils import *
 
 initialize_session_state()
 
-
-@st.fragment()
-def speaker():
-    st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=st.session_state.last_card["front"]))
-    if st.session_state.tts:
-        print("speaking")
-        audio_placeholder = st.empty()
-        speak(audio_placeholder, st.session_state.tts)
-
-
-st.set_page_config(page_title="Add Flashcards", layout="centered", page_icon="📝")
+st.set_page_config(page_title="Add", layout="centered", page_icon="📝")
 st.title("📝 Add Flashcards")
 st.write("")
 
@@ -36,7 +26,7 @@ with st.container(border=True):
     with col_text:
         st.write(st.session_state.last_card["back"])
     with col_speak:
-         speaker()
+         speaker(st.session_state.last_card["front"])
     st.caption("Last card")
 
 

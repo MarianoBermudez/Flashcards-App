@@ -4,8 +4,7 @@ from modules.utils import *
 
 initialize_session_state()
 
-
-st.set_page_config(page_title="Review Flashcards", layout="centered", page_icon="✨")
+st.set_page_config(page_title="Review", layout="centered", page_icon="✨")
 st.title("✨ Review Flashcards")
 st.write("")
 
@@ -30,8 +29,8 @@ else:
             with col_text:
                 st.write(f"#### {current_card_data['front']}")
             with col_speak:
-                st.button("🔊", key="speak_front", on_click=lambda: st.session_state.update(tts=current_card_data['front']), type="tertiary")
-        
+                speaker(current_card_data['front'])
+
         st.button(
             "Reveal Answer", 
             key="reveal_answer_btn", 
@@ -45,7 +44,7 @@ else:
             with col_text_back:
                 st.markdown(current_card_data['back'])
             with col_speak_back:
-                st.button("🔊", key="speak_back", on_click=lambda: st.session_state.update(tts=current_card_data['front']), type="tertiary")
+                speaker(current_card_data['front'])
 
             st.caption(f"{current_index + 1} / {num_cards}")
 
@@ -64,6 +63,5 @@ else:
             on_click=update_review_status_action, args=(card_index, "Easy",))
 
 
-audio_placeholder = st.empty()
-speak(audio_placeholder, st.session_state.tts)
+
 
