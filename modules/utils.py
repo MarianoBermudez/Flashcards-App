@@ -7,13 +7,14 @@ import modules.flashcards_manager as fm
 from modules.gemini_api import askGemini
 
 def initialize_session_state():
+    print("initializing session state")
     if "flashcards" not in st.session_state:
         st.session_state.flashcards = fm.load_all_cards()
         st.session_state.due_cards = fm.get_due_cards()
         st.session_state.current_index = 0
         st.session_state.show_answer = False
         st.session_state.view_mode = 'review'
-        st.session_state.last_card = st.session_state.flashcards[-1]["card"]["back"]
+        st.session_state.last_card = {"front": st.session_state.flashcards[-1]["card"]["front"], "back": st.session_state.flashcards[-1]["card"]["back"]}
         st.session_state.card_to_edit = None
         st.session_state.tts = ""
 
@@ -26,7 +27,6 @@ def update_review_status_action(original_index, grade_string):
     st.session_state.show_answer = False
     st.session_state.current_index += 1
 
-@st.fragment()
 def speak(placeholder, text_to_speak):
     """Generates audio from text and plays it automatically in a placeholder."""
     if text_to_speak:
