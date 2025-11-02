@@ -25,7 +25,7 @@ else:
 
     if not st.session_state.show_answer:
         with st.container(border=True):
-            col_text, col_speak = st.columns([1.4, 0.1])
+            _ ,col_text, col_speak = st.columns([0.001, 1, 0.1])
             with col_text:
                 st.write(f"#### {current_card_data['front']}")
             with col_speak:
@@ -40,13 +40,14 @@ else:
 
     else:
         with st.container(border=True):
-            col_text_back, col_speak_back = st.columns([1.4, 0.1])
+            _, col_text_back, col_speak_back = st.columns([0.001, 1, 0.1])
             with col_text_back:
                 st.markdown(current_card_data['back'])
             with col_speak_back:
                 speaker(current_card_data['front'])
 
-            st.caption(f"{current_index + 1} / {num_cards}")
+            _, caption_col = st.columns([1, 0.1])
+            caption_col.caption(f"{current_index + 1} / {num_cards}")
 
         col0, col1, col2, col3 = st.columns(4)
 

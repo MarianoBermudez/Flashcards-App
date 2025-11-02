@@ -1,3 +1,6 @@
+make metrics update after adding or reviewing
+add padding??
+
 use fragments to improve perfomance
 is there a way to avoid reloading the cards on manage view?
 create an .exe file?
