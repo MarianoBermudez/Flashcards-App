@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai  # <-- Así sabe exactamente qué buscar
+from google import genai
 from google.genai.errors import APIError
 
 
