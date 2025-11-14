@@ -1,6 +1,5 @@
 import streamlit as st
-from google import genai
-from google.genai.errors import APIError
+import google.generativeai as genai
 
 
 def askGemini(prompt: str, context: str = "", key_file_path: str = "gemini_api_key.txt") -> str:
@@ -33,7 +32,5 @@ def askGemini(prompt: str, context: str = "", key_file_path: str = "gemini_api_k
             contents=final_prompt
         )
         return response.text
-    except APIError as e:
-        return f"Gemini API Error: {e}"
     except Exception as e:
         return f"An unexpected error occurred during content generation: {e}"
