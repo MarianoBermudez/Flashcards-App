@@ -7,14 +7,14 @@ import modules.flashcards_manager as fm
 from modules.gemini_api import askGemini
 
 def initialize_session_state():
-    print("initializing session state")
     if "flashcards" not in st.session_state:
+        print("initializing session state")
         st.session_state.flashcards = fm.load_all_cards()
         st.session_state.due_cards = fm.get_due_cards()
         st.session_state.current_index = 0
         st.session_state.show_answer = False
         st.session_state.view_mode = 'review'
-        st.session_state.last_card = {"front": st.session_state.flashcards[-1]["card"]["front"], "back": st.session_state.flashcards[-1]["card"]["back"]}
+        st.session_state.last_card = None
         st.session_state.card_to_edit = None
         st.session_state.tts = ""
 

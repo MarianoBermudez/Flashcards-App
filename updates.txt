@@ -1,7 +1,10 @@
-make metrics update after adding or reviewing
-add padding??
-
+is last card logic good? 
+fix the errors when tehre are no cards yet.
+does review section let u review right after u added? i think it doesnt.
 use fragments to improve perfomance
+
+make metrics update after adding or reviewing
+
 is there a way to avoid reloading the cards on manage view?
 create an .exe file?
 
