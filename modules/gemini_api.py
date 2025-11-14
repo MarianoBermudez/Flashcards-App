@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+import google as genai
 
 
 def askGemini(prompt: str, context: str = "", key_file_path: str = "gemini_api_key.txt") -> str:
