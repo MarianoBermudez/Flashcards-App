@@ -2,3 +2,4 @@ gTTS==2.5.4
 protobuf==6.33.1
 streamlit==1.50.0
 supabase==2.24.0
+google-generativeai
