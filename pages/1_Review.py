@@ -1,8 +1,8 @@
-import streamlit as st
 from modules.utils import *
 
 
 initialize_session_state()
+st.session_state.flashcards = fm.load_all_cards()
 
 st.set_page_config(page_title="Review", layout="centered", page_icon="✨")
 st.title("✨ Review Flashcards")

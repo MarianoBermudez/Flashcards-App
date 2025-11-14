@@ -1,5 +1,5 @@
 from modules.utils import *
-from datetime import datetime
+
 
 initialize_session_state()
 st.session_state.flashcards = fm.load_all_cards()

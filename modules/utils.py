@@ -5,6 +5,7 @@ import base64
 import random
 import modules.flashcards_manager as fm
 from modules.gemini_api import askGemini
+from datetime import datetime
 
 def initialize_session_state():
     if "flashcards" not in st.session_state:
