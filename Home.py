@@ -1,6 +1,4 @@
 from modules.utils import * 
-import pandas as pd
-import plotly.express as px  
 # streamlit run .\Home.py
 
 def main():
