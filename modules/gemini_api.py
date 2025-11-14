@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai  # <-- Así sabe exactamente qué buscar
-from google.generativeai.errors import APIError # <-- Importación explícita también
+from google.genai.errors import APIError
+
 
 def askGemini(prompt: str, context: str = "", key_file_path: str = "gemini_api_key.txt") -> str:
     """
